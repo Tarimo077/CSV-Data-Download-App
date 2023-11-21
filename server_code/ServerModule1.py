@@ -45,3 +45,63 @@ def pdf_gen(pdf):
 
     # Return the URL to the saved PDF file
     return anvil.media.from_file(output_file, "application/pdf", '/tmp/output1.pdf')
+
+
+@anvil.server.callable
+def pdfEdit(file, search_text, replacement_text):
+# Read the PDF file
+  with open(file.get_bytes(), 'rb') as pdf_file:
+    pdf_reader = PyPDF2.PdfFileReader(pdf_file)
+
+    # Create a new PDF writer object
+    pdf_writer = PyPDF2.PdfFileWriter()
+
+        # Iterate through each page in the PDF
+    for page_num in range(pdf_reader.numPages):
+            # Get the page
+      page = pdf_reader.getPage(page_num)
+
+            # Search for the text and replace it
+      page_text = page.extractText()
+      if search_text in page_text:
+        page_text = page_text.replace(search_text, replacement_text)
+        page = PyPDF2.PdfFileReader(page_text)
+
+            # Add the modified page to the new PDF
+        pdf_writer.addPage(page)
+
+        # Save the modified PDF to a new file
+    output_filename = "modified_" + file.name
+    with open(output_filename, 'wb') as output_file:
+      pdf_writer.write(output_file)
+  return anvil.media.from_file(output_file, "application/pdf", '/tmp/output1.pdf')
+
+@anvil.server.callable
+def process_pdf(file_path, search_text, replacement_text):
+    # Read the PDF file
+    with open(file_path.get_bytes(), 'rb') as pdf_file:
+        pdf_reader = PyPDF2.PdfFileReader(pdf_file)
+
+        # Create a new PDF writer object
+        pdf_writer = PyPDF2.PdfFileWriter()
+
+        # Iterate through each page in the PDF
+        for page_num in range(pdf_reader.numPages):
+            # Get the page
+            page = pdf_reader.getPage(page_num)
+
+            # Search for the text and replace it
+            page_text = page.extractText()
+            if search_text in page_text:
+                page_text = page_text.replace(search_text, replacement_text)
+                page = PyPDF2.PdfFileReader(page_text)
+
+            # Add the modified page to the new PDF
+            pdf_writer.addPage(page)
+
+        # Save the modified PDF to a new file
+        output_filename = "modified_" + os.path.basename(file_path)
+        with open(output_filename, 'wb') as output_file:
+            pdf_writer.write(output_file)
+
+    return output_filename

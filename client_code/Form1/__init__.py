@@ -12,7 +12,6 @@ class Form1(Form1Template):
 
   def outlined_button_1_click(self, **event_args):
     """This method is called when the button is clicked"""
-    inputpdf = self.file_loader_1.file
-    pdf = anvil.server.call('pdf_gen', inputpdf)
-    anvil.media.download(pdf)
-
+    file_path = self.file_loader_1.file
+    retan = anvil.server.call('pdf_gen', file_path)
+    anvil.media.download(retan)
