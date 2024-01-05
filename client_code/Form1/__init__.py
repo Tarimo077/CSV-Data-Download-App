@@ -37,3 +37,13 @@ class Form1(Form1Template):
     rxt = json.loads(rxt)
     csv  = anvil.server.call('download_csv', rxt)
     anvil.media.download(csv)
+
+  def refrigerator_btn_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    u = "https://appliapay.com/refrigeratorAIData"
+    dt = anvil.server.call('req', u)
+    rxt = dt.get_bytes().decode('utf-8')
+    rxt = json.loads(rxt)
+    csv  = anvil.server.call('download_csv', rxt)
+    anvil.media.download(csv)
+    

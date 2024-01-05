@@ -24,8 +24,14 @@ components:
     properties: {text: Download Powerpot Cooker data, role: outlined-button, background: 'theme:On
         Primary Container', foreground: 'theme:Primary Container'}
     type: Button
-    layout_properties: {grid_position: 'AJMGVA,RJKXIN'}
+    layout_properties: {grid_position: 'YHQRII,OVQUZA'}
     event_bindings: {click: powerpotbtn_click}
+  - name: refrigerator_btn
+    properties: {text: Download Refrigerator data, role: outlined-button, background: 'theme:On
+        Primary Container', foreground: 'theme:Primary Container'}
+    type: Button
+    layout_properties: {grid_position: 'MWLLQA,RBFKXL'}
+    event_bindings: {click: refrigerator_btn_click}
 - type: FlowPanel
   properties: {}
   name: navbar_links
