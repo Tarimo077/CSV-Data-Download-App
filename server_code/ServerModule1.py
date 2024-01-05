@@ -20,7 +20,7 @@ def download_csv(arr):
   array = arr
   df = pd.DataFrame(array)
   df.to_csv('/tmp/output.csv', index=False)
-  X_media = anvil.media.from_file('/tmp/output.csv', 'csv', 'cooker_data.csv')
+  X_media = anvil.media.from_file('/tmp/output.csv', 'csv', 'consumption_data.csv')
   return X_media
 
 @anvil.server.callable
