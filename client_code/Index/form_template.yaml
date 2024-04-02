@@ -10,8 +10,10 @@ components:
   properties: {spacing_above: large, role: outlined}
   type: DropDown
   layout_properties: {grid_position: 'HTCHZU,QEWRSI'}
+  event_bindings: {change: drop_down_1_change}
 - name: button_1
-  properties: {text: '', spacing_above: large, icon: 'fa:download', align: full}
+  properties: {text: '', spacing_above: large, icon: 'fa:download', align: center,
+    background: 'theme:Primary', foreground: 'theme:On Primary'}
   type: Button
   layout_properties: {grid_position: 'ERZTKL,MFIGNL'}
   event_bindings: {click: button_1_click}

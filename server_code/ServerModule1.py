@@ -8,11 +8,19 @@ import anvil.http
 
 @anvil.server.callable
 def req(m):
-  url = m
   headers = {
     "Content-Type": "application/json"
   }
-  response = anvil.http.request(url, method="GET", username='admin', password='123Give!@#')
+  response = anvil.http.request(url=m, method='GET', username='admin', password='123Give!@#')
+  return response
+
+@anvil.server.callable
+def get_Data(m):
+  url = "https://appliapay.com/getMeasurementData"
+  headers = {
+    "Content-Type": "application/json"
+  }
+  response = anvil.http.request(url=url, data=m, method="GET", username='admin', password='123Give!@#')
   return response
 
 @anvil.server.callable
