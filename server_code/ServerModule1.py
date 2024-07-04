@@ -1,4 +1,3 @@
-import PyPDF2
 import anvil.server
 import os
 import anvil.media
